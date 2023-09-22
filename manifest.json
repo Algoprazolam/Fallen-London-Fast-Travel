@@ -18,7 +18,7 @@
         "https://www.fallenlondon.com/*"
       ],
       "js": [
-        "fasttravel.js"
+        "fasttravelrevamp.js"
       ],
       "css":[
         "cssinject.css"

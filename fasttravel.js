@@ -43,4 +43,14 @@ function changeText() {
 urlChangeChecker.observe(document, urlChangeConfig);
 
 
+/* 
+if travelbutton queryselector is null
+try finding it again and add all the functionality to it
+
+functionality should be to redirect to storypage, wait a bit; check to see it perhapsnot button exists and click it: then travel
+
+
+*/
+
+
 
