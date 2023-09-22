@@ -18,14 +18,12 @@ function lookForTravel() {
             //stopLookForTravel()
             travelButton.disabled = false;
             travelButton.innerText = "Fast Travel";
-            travelButton.addeventlistener("click", function () {
-                fastTravelling = true;
-                if (window.location.href != storyPage) {
-                    window.document.querySelector('[data-name="story"] a').click();
-                }
-            });
+            travelButton.addEventListener("click", startFastTravel)
+                
         }
+        
 
+        
         // ... perhaps not button
         let perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
         if (perhapsNotButton == null) {
@@ -41,6 +39,7 @@ function lookForTravel() {
         // ... if the url is storyPage AND you are fastTravelling AND there is no perhap sbutton
         if (window.location.href == storyPage && fastTravelling && perhapsNotButton == null) {
             // Click the travel button
+            travelButton.removeEventListener("click", startFastTravel )
             fastTravelling = false;
             stopLookForTravel()
             travelButton.click();
@@ -50,6 +49,13 @@ function lookForTravel() {
 
 
     }, 500);
+};
+
+function startFastTravel() {
+    fastTravelling = true;
+        if (window.location.href != storyPage) {
+            window.document.querySelector('[data-name="story"] a').click();
+        }
 };
 
 function stopLookForTravel() {
