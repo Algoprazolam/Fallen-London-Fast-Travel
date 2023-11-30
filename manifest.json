@@ -9,7 +9,7 @@
         "https://www.fallenlondon.com/*"
       ],
       "js": [
-        "fasttravelrevamp.js"
+        "fasttravelFunctional.js"
       ],
       "css":[
         "cssinject.css"
