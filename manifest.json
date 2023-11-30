@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Fallen London Fast Travel",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Unlocks the travel button while in a storylet in Fallen Lodon, travel without having to click the 'Perhaps Not' button.",
   "content_scripts": [
     {
