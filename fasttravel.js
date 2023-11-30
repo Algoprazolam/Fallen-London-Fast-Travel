@@ -16,9 +16,14 @@ function lookForTravel() {
         else {
             // So it can be modified to say "fast travel" and a different event
             //stopLookForTravel()
+            if (travelButton.disabled) {
+              travelButton.addEventListener("click", startFastTravel)
+
+            }
+
+
             travelButton.disabled = false;
             travelButton.innerText = "Fast Travel";
-            travelButton.addEventListener("click", startFastTravel)
                 
         }
         
