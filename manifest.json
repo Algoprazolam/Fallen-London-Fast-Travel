@@ -20,11 +20,21 @@
       "js": [
         "fasttravel.js"
       ],
-      "run_at": "document_idle"
+      "css":[
+        "cssinject.css"
+      ]
+      //"run_at": "document_idle"
     }
   ],
   "permissions": [
     "activeTab",
     "declarativeContent"
-  ]
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["cssinject.css"],
+      "matches": [ "https://www.fallenlondon.com/*" ]
+    }
+    
+]
 }
