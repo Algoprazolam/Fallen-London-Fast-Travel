@@ -12,24 +12,27 @@ let travelButtonDisabledChecker = new MutationObserver(function () {
                 
                 if (perhapsNotButton != null) {
                     perhapsNotButton.click();
-                    perhapsNotCheck = false;
+                    //perhapsNotCheck = false;
+                    travelButtonGlobal.click();
                 }
                 if (window.location.href != storyPage) {
                     window.document.querySelector('[data-name="story"] a').click();
-                    perhapsNotCheck = true;                   
+                    //perhapsNotCheck = true;
+                    travelButtonGlobal.click();
+                                       
                 }
             })
             //if story is current page and the button doesnt exist disable the check
-            if (window.location.href == storyPage && perhapsNotCheck) {
-                perhapsNotCheck = false;
-                perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
-                if (perhapsNotButton != null) {
-                    perhapsNotButton.click();
-                }
+            // if (window.location.href == storyPage && perhapsNotCheck) {
+            //     perhapsNotCheck = false;
+            //     perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
+            //     if (perhapsNotButton != null) {
+            //         perhapsNotButton.click();
+            //     }
             
-            } else {
-                perhapsNotCheck = false;
-            }
+            // } else {
+            //     perhapsNotCheck = false;
+            // }
 
     
         
@@ -38,3 +41,5 @@ let travelButtonDisabledChecker = new MutationObserver(function () {
         
     
 travelButtonDisabledChecker.observe(document, checkerConfig);
+
+//ReactModal__Overlay--after-open
