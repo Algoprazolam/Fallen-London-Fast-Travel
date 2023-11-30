@@ -6,4 +6,5 @@ A (chrome) extension that enables the travel button (while in desktop mode) from
 - Go to chrome extensions ( [chrome://extensions/](chrome://extensions/) )
 - enable developer mode ( there should be a slider in the top right of the extensions page)
 - Click the **Load Unpacked** button in the top left of the page.
+- select the folder you obtained by cloning the repo in step 1 and confirm.
 - Make sure it's enabled and done.
