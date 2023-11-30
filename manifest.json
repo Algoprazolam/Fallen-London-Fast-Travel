@@ -15,7 +15,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.fallenlondon.com/"
+        "https://www.fallenlondon.com/*"
       ],
       "js": [
         "fasttravel.js"
