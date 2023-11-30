@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Fallen London Fast Travel",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Unlocks the travel button while in a storylet in Fallen Lodon, travel without having to click the 'Perhaps Not' button.",
   "content_scripts": [
     {
@@ -9,10 +9,7 @@
         "https://www.fallenlondon.com/*"
       ],
       "js": [
-        "fasttravelFunctional.js"
-      ],
-      "css":[
-        "cssinject.css"
+        "fasttravel.js"
       ]
       
     }
@@ -20,12 +17,5 @@
   "permissions": [
     "activeTab",
     "declarativeContent"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["cssinject.css"],
-      "matches": [ "https://www.fallenlondon.com/*" ]
-    }
-    
-]
+  ]
 }

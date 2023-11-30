@@ -1,56 +1,73 @@
-let travelButtonPara = document.createElement("p");
-travelButtonPara.classList.add("travelButtonPara");
-let travelButtonNode = document.createTextNode("Fast Travel Enabled");
-travelButtonPara.appendChild(travelButtonNode);
-let previousUrl = "";
-const urlChangeConfig = {subtree: true, childList: true};
+
+const checkerConfig = { subtree: true, childList: true };
+let interval;
+let fastTravelling = false;
 const storyPage = "https://www.fallenlondon.com/";
 
-const urlChangeChecker = new MutationObserver( function() {
-  // alternative if null travelbutton catch doesnt work: or || (&& is and) smth else
-  if (window.location.href !== previousUrl) {
-    previousUrl = window.location.href;
-    changeText();
-  }
-});
 
-//todo: run query selector as long as travelbutton query is not null then clear interval
+function lookForTravel() {
+    // Check every few ms for...
+    interval = setInterval(function () {
+        // ... the travel button
+        let travelButton = window.document.querySelector(".travel-button--infobar");
+        if (travelButton == null) {
+            travelButton = window.document.querySelector(".travel-button--infobar");
+        }
+        else {
+            // So it can be modified to say "fast travel" and a different event
+            //stopLookForTravel()
+            travelButton.disabled = false;
+            travelButton.innerText = "Fast Travel";
+            travelButton.addEventListener("click", startFastTravel)
+                
+        }
+        
 
-function changeText() {
-  console.log("starting changetext function");
-  const travelButton = window.document.querySelector(".travel-button--infobar");
-  const storyButton =  window.document.querySelector('[data-name="story"] a');
-  const perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
-  //todo: use an if or trycatch to append if travelbutton is not null
-  travelButton.appendChild(travelButtonPara);
-  travelButton.disabled = false;
-  travelButton.addEventListener("click", function () {
-    if (window.location.href != storyPage) {
-     storyButton.click();
-      console.log("ran thru the redirect if");
-    }
-    if ( perhapsNotButton != null)
-    console.log("found the perhaps not button");
-    perhapsNotButton.click();
+        
+        // ... perhaps not button
+        let perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
+        if (perhapsNotButton == null) {
+            perhapsNotButton = window.document.querySelector(".buttons--storylet-exit-options button");
+        } else {
+            // if there is a perhapsnotbutton
+            // and you are fast travelling, click it
+            if (fastTravelling) {
+                perhapsNotButton.click();
+            }
+        }
 
-  }
-  )
+        // ... if the url is storyPage AND you are fastTravelling AND there is no perhap sbutton
+        if (window.location.href == storyPage && fastTravelling && perhapsNotButton == null) {
+            // Click the travel button
+            travelButton.removeEventListener("click", startFastTravel )
+            fastTravelling = false;
+            stopLookForTravel()
+            travelButton.click();
+
+
+        }
+
+
+    }, 500);
 };
 
+function startFastTravel() {
+    fastTravelling = true;
+        if (window.location.href != storyPage) {
+            window.document.querySelector('[data-name="story"] a').click();
+        }
+};
 
+function stopLookForTravel() {
+    clearInterval(interval);
+    interval = null;
+}
+// When the page changes
+const travelButtonDisabledChecker = new MutationObserver(function () {
+    // If not already looking for controls to modify, start lookin
+    if (interval == null) {
+        lookForTravel()
+    }
+});
 
-
-urlChangeChecker.observe(document, urlChangeConfig);
-
-
-/* 
-if travelbutton queryselector is null
-try finding it again and add all the functionality to it
-
-functionality should be to redirect to storypage, wait a bit; check to see it perhapsnot button exists and click it: then travel
-
-
-*/
-
-
-
+travelButtonDisabledChecker.observe(document, checkerConfig);
